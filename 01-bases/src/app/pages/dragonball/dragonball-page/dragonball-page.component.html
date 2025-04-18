@@ -16,7 +16,10 @@
                     <span>
                         {{idx}} - {{character.name}}
                     </span>
-                    <strong class="text-danger">
+                    <strong 
+                        [class.text-danger]="character.power > 9000"
+                        [class.text-primary]="character.power < 9000"
+                        >
                         ({{character.power}})
                     </strong>
                 </li>
