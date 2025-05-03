@@ -1,6 +1,6 @@
 <section class="mt-5">
     <table class="table table-md mt-2 w-full">
-        <header>
+        <thead>
             <tr>
                 <th>#</th>
                 <th>icono</th>
@@ -9,14 +9,27 @@
                 <th>Capital</th>
                 <th>Población</th>
             </tr>
-        </header>
+        </thead>
         <tbody>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
+            @for(country of countries(); track country.cca2; let index = $index) {
+                <tr>
+                    <td>{{index +1}}</td>
+                    <td>{{country.flag }}</td>
+                    <td>
+                        <img
+                            class="w-10 h-10" 
+                            [src]="country.flags.svg" 
+                            [alt]="country.name.common" >
+                    </td>
+                    <td>{{country.name.common }}</td>
+                    <td>{{country.population }}</td>
+                    <td>
+                        <a class="link-primary cursor-pointer">
+                            Más información
+                        </a>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </section>
