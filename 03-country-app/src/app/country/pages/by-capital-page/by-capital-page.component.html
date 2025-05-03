@@ -1,3 +1,9 @@
 <country-search-input placeholder="Buscar por capital" (value)="onSearchByCapital($event)"/>
 
+@if(isError()){
+    <div class="error">
+        <p>Ocurrió un error al cargar los países</p>
+    </div>
+}
+
 <country-list [countries]="countries()"/>
