@@ -2,13 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { SearchInputComponent } from "../../components/search-input/search-input.component";
 import { CountryListComponent } from "../../components/country-list/country-list.component";
 import { CountryService } from '../../services/country.service';
-import { firstValueFrom, of } from 'rxjs';
+import { of } from 'rxjs';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-by-country-page',
-  imports: [SearchInputComponent, CountryListComponent, JsonPipe],
+  imports: [SearchInputComponent, CountryListComponent],
   templateUrl: './by-country-page.component.html',
 })
 export class ByCountryPageComponent {
