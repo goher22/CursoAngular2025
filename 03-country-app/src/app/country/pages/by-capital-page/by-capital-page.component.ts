@@ -7,7 +7,7 @@ import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-by-capital-page',
-  imports: [SearchInputComponent, CountryListComponent, JsonPipe],
+  imports: [SearchInputComponent, CountryListComponent],
   templateUrl: './by-capital-page.component.html',
 })
 export class ByCapitalPageComponent {
