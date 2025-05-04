@@ -37,4 +37,16 @@ export class CountryService {
     );
   }
 
+  searchByAlphaCode(code: string): Observable<Country | undefined> {
+    const url = `${API_URL}/alpha/${code}`;
+
+    return this.http.get<RestCountry[]>(url).pipe(
+      map(resp => CountryMapper.maRestCountryArrayCountry(resp)),
+      map(countries => countries.at(0)),
+      catchError(error => {
+        return throwError(() => new Error('No se encontró un país con ese nombre'));
+      })
+    );
+  }
+
 }
