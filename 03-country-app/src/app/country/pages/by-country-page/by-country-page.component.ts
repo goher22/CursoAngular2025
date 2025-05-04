@@ -4,10 +4,11 @@ import { CountryListComponent } from "../../components/country-list/country-list
 import { CountryService } from '../../services/country.service';
 import { firstValueFrom, of } from 'rxjs';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-by-country-page',
-  imports: [SearchInputComponent, CountryListComponent],
+  imports: [SearchInputComponent, CountryListComponent, JsonPipe],
   templateUrl: './by-country-page.component.html',
 })
 export class ByCountryPageComponent {

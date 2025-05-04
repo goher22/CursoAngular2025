@@ -3,10 +3,11 @@ import { SearchInputComponent } from "../../components/search-input/search-input
 import { CountryListComponent } from "../../components/country-list/country-list.component";
 import { CountryService } from '../../services/country.service';
 import { firstValueFrom } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-by-capital-page',
-  imports: [SearchInputComponent, CountryListComponent],
+  imports: [SearchInputComponent, CountryListComponent, JsonPipe],
   templateUrl: './by-capital-page.component.html',
 })
 export class ByCapitalPageComponent {
