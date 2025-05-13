@@ -8,4 +8,15 @@
         <p>Saludos {{client().name}}, es un placer {{client().gender | i18nSelect:invitationMap}} a nuestro evento</p>
         <button (click)="changeClient()"  class="btn btn-primary">Cambiar cliente</button>
     </app-card>
+
+    <app-card title="i18nPluralPipe">
+        <p>
+            Actualmente hay {{clients().length | i18nPlural:clientsMap()}}
+        </p>
+        <button 
+            [disabled]="clients().length === 0"
+            (click)="deleteClient()"  class="btn btn-primary">
+            Borrar cliente
+        </button>
+    </app-card>
 </div>
