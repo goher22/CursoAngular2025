@@ -6,9 +6,12 @@ import { registerLocaleData } from '@angular/common';
 
 import localEs from '@angular/common/locales/es';
 import localFr from '@angular/common/locales/fr';
+import localEn from '@angular/common/locales/en';
+import { LocalService } from './services/local.service';
 
 registerLocaleData(localEs, 'es')
 registerLocaleData(localFr, 'fr')
+registerLocaleData(localEn, 'en')
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection(
@@ -16,7 +19,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     {
       provide: LOCALE_ID,
-      useValue: 'es'
+      // useValue: 'es'
+      deps: [LocalService],
+      useFactory: (localService: LocalService) => localService.getLocale(),
     }
   ]
 };
