@@ -56,9 +56,6 @@
     </app-card>
 
     <app-card title="keyvaluePipe">
-        <!-- <pre class="text-primary">
-            {{ profile() | keyvalue | json }}
-        </pre> -->
         <ul>
             @for (item of profile() | keyvalue; track $index) {
                 <li class="text-primary">
@@ -67,6 +64,15 @@
                 </li>
             }
         </ul>
+    </app-card>
 
+    <app-card title="asyncPipe">
+        <p>{{promiseValue | async }}</p>
+        @if(promiseValue | async; as value) {
+            <p class="text-primary">{{value}}</p>
+        }
+        @else{
+            <p class="text-accent">Espere por favoir...</p>
+        }
     </app-card>
 </div>
