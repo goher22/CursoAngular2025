@@ -72,7 +72,18 @@
             <p class="text-primary">{{value}}</p>
         }
         @else{
-            <p class="text-accent">Espere por favoir...</p>
+            <p class="text-accent">Espere por favor...</p>
+        }
+
+        <h3 class="text-2xl">Observable</h3>
+
+        <p>{{ myObservableTimer | async }}</p>
+
+        @if(myObservableTimer | async; as value) {
+            <p class="text-primary">Valor: {{value}}</p>
+        }
+        @else {
+            <p class="text-accent">Espere por favor...</p>
         }
     </app-card>
 </div>
