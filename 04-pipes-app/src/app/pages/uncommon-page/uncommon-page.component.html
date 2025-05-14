@@ -54,4 +54,19 @@
             {{ clients().join(', ') | json | uppercase }}
         </p>
     </app-card>
+
+    <app-card title="keyvaluePipe">
+        <!-- <pre class="text-primary">
+            {{ profile() | keyvalue | json }}
+        </pre> -->
+        <ul>
+            @for (item of profile() | keyvalue; track $index) {
+                <li class="text-primary">
+                    <strong>{{ item.key | titlecase }}: </strong>
+                    <span class="text-gray-500">{{ item.value }} </span>
+                </li>
+            }
+        </ul>
+
+    </app-card>
 </div>
