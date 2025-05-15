@@ -10,4 +10,6 @@ import { ToggleCasePipe } from '../../pipes/toggle-case.pipe';
 })
 export default class CustomPageComponent {
   name = signal("Carlos Gomez");
+  
+  uppercase = signal(true);
 }
