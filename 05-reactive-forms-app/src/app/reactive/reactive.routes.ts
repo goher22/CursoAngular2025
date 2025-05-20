@@ -30,3 +30,5 @@ export const reactiveRoutes: Routes = [
         ]
     }
 ];
+
+export default reactiveRoutes;

@@ -7,3 +7,5 @@ export const countryRoutes: Routes = [
         component: CountryPageComponent,
     }
 ];
+
+export default countryRoutes;
