@@ -94,6 +94,11 @@
 
             <div class="row">
                 <div class="col">
+                    @if(myForm.errors && myForm.touched){
+                        <span class="form-text text-danger">
+                            Las contraseña no son iguales
+                        </span>    
+                    }
                     <button class="btn btn-primary float-end"
                             type="submit">
                         Crear
