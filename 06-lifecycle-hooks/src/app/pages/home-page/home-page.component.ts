@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { afterNextRender, afterRender, Component, effect } from '@angular/core';
 
 const log = (...messages:string[]) => {
   console.log(
@@ -17,6 +17,14 @@ export class HomePageComponent {
   constructor() {
     log('Constructor llamado');
   }
+
+  basicEffect = effect((onCleanUP)=> {
+    log('effect', 'Disparar efectos secundario')
+
+    onCleanUP(()=> {
+      log("onCleanUP", "Se ejecuta cuando el efecto se va a destruir")
+    })
+  })
 
   ngOnInit(){
     log(
@@ -66,5 +74,26 @@ export class HomePageComponent {
       "Runs every time all components have been rendered to the DOM."
     );
   }
+
+  ngOnDestroy() {
+    log(
+      'ngOnDestroy',
+      "Runs once before the component is destroyed."
+    );
+  }
+
+  afterNextRenderEffect = afterNextRender(()=> {
+    log(
+      'afterNextRender',
+      'Runs once the next time that all components have been rendered to the DOM.'
+    )
+  })
+
+  afterRenderEffect = afterRender(()=> {
+    log(
+      'afterRender',
+      'Runs every time all components have been rendered to the DOM.'
+    )
+  })
 
 }
