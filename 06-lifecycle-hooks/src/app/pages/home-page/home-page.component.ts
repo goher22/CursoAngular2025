@@ -1,4 +1,5 @@
 import { afterNextRender, afterRender, Component, effect, signal } from '@angular/core';
+import { TitleComponent } from '../../components/title/title.component';
 
 const log = (...messages:string[]) => {
   console.log(
@@ -9,7 +10,7 @@ const log = (...messages:string[]) => {
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [TitleComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
