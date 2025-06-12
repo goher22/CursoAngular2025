@@ -1,5 +1,5 @@
-import mapboxgl from 'mapbox-gl';
 import { AfterViewInit, Component, effect, ElementRef, signal, viewChild } from '@angular/core';
+import mapboxgl from 'mapbox-gl';
 
 import { environment } from '../../../environments/environment';
 import { DecimalPipe, JsonPipe } from '@angular/common';
@@ -40,8 +40,8 @@ export class FullscreenMapPage implements AfterViewInit {
 
     const map = new mapboxgl.Map({
       container: element,
-      style: 'mapbox://styles/mapbox/streets-v12', // style URL
-      center: [lng, lat], // starting position [lng, lat]
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [lng, lat],
       zoom: this.zoom(),
     });
 
