@@ -5,6 +5,7 @@
         "mapboxgl",
         "mapboxkey",
         "moveend",
+        "UUIDV",
         "zoomend"
     ]
 }
