@@ -3,6 +3,8 @@
         "mapbox",
         "MAPBOX",
         "mapboxgl",
-        "mapboxkey"
+        "mapboxkey",
+        "moveend",
+        "zoomend"
     ]
 }
