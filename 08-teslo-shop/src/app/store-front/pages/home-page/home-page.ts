@@ -12,12 +12,7 @@ import { ProductsServices } from '@/products/services/products.service';
 export class HomePage {
   productsServices = inject(ProductsServices);
 
-  // productsResource = rxResource({
-  //   request: () => ({
-
-  //   }),
-  //   loader: () => {
-  //     return this.productsServices.getProducts();
-  //   },
-  // })
+  productsResource = rxResource({
+    stream: () => this.productsServices.getProducts({})
+  })
 }

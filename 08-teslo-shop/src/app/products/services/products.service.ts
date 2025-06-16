@@ -1,8 +1,9 @@
-import { HttpClient } from "@angular/common/http";
-import { inject } from "@angular/core";
-import { ProductResponse } from "../interfaces/product.interface";
 import { Observable, tap } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+
 import { environment } from "src/environments/environment";
+import { ProductResponse } from "../interfaces/product.interface";
 
 const baseUrl = environment.baseUrl;
 
@@ -12,6 +13,9 @@ interface Options {
     gender?: number
 }
 
+@Injectable({
+    providedIn: 'root'
+})
 export class ProductsServices {
     private http = inject(HttpClient);
 
