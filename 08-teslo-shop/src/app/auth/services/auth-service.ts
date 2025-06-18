@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 import { User } from '../interfaces/user.interface';
-import { AUthResponse } from '../interfaces/auth-response.interface';
-import { tap } from 'rxjs';
+import { AuthResponse } from '../interfaces/auth-response.interface';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 
 type AuthStatus = 'checking' | 'authenticated' | 'not-authenticated' 
 const baseUrl = environment.baseUrl;
@@ -31,8 +31,8 @@ export class AuthService {
   user = computed<User|null>(() => this._user())
   token = computed<string|null>(() => this._token())
 
-  login(email: string, password: string) {
-    return this.http.post<AUthResponse>(`${baseUrl}/auth/login`, {
+  login(email: string, password: string): Observable<Boolean> {
+    return this.http.post<AuthResponse>(`${baseUrl}/auth/login`, {
       email,
       password,
     }).pipe(
@@ -41,6 +41,13 @@ export class AuthService {
         this._authStatus.set('authenticated');
         this._token.set(resp.token)
         localStorage.setItem('token', resp.token)
+      }),
+      map(()=> true),
+      catchError((error) => {
+        this._user.set(null);
+        this._token.set(null);
+        this._authStatus.set('not-authenticated');
+        return of(false);
       })
     )
   }
