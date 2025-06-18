@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../interfaces/user.interface';
 import { AuthResponse } from '../interfaces/auth-response.interface';
 import { catchError, map, Observable, of, tap } from 'rxjs';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 type AuthStatus = 'checking' | 'authenticated' | 'not-authenticated' 
 const baseUrl = environment.baseUrl;
@@ -18,6 +19,10 @@ export class AuthService {
   private _token = signal<string|null>(null);
 
   private http = inject(HttpClient);
+
+  checkStatusResource = rxResource({
+    stream: () => this.checkStatus()
+  })
 
   authStatus = computed<AuthStatus>(() => {
     if(this._authStatus() === 'checking') return 'checking';
@@ -35,6 +40,31 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${baseUrl}/auth/login`, {
       email,
       password,
+    }).pipe(
+      tap(resp => {
+        this._user.set(resp.user);
+        this._authStatus.set('authenticated');
+        this._token.set(resp.token)
+        localStorage.setItem('token', resp.token)
+      }),
+      map(()=> true),
+      catchError((error) => {
+        this._user.set(null);
+        this._token.set(null);
+        this._authStatus.set('not-authenticated');
+        return of(false);
+      })
+    )
+  }
+
+  checkStatus():Observable<boolean>{
+    const token = localStorage.getItem('token')
+    if(!token) return of(false);
+
+    return this.http.get<AuthResponse>(`${ baseUrl }/auth/check-status`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     }).pipe(
       tap(resp => {
         this._user.set(resp.user);
