@@ -40,4 +40,9 @@ export class ProductsServices {
                 tap(resp => console.log(resp))
             )
     }
+
+    getProductById(idProduct: string): Observable<Product> {
+        return this.http.get<Product>(`${baseUrl}/products/${idProduct}`)
+        .pipe(tap((product) => console.log(product)))
+    }
 }
