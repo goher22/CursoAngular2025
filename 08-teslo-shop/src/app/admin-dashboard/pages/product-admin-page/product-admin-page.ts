@@ -3,10 +3,11 @@ import { Component, effect, inject } from '@angular/core';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
+import { ProductDetails } from './product-details/product-details';
 
 @Component({
   selector: 'app-product-admin-page',
-  imports: [],
+  imports: [ProductDetails],
   templateUrl: './product-admin-page.html',
 })
 export class ProductAdminPage {
