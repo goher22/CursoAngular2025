@@ -1,7 +1,7 @@
 <div class="overflow-x-auto">
   <table class="table">
     <!-- head -->
-    <thead>
+    <thead class="text-primary">
       <tr>
         <th>
           <label>
@@ -32,7 +32,7 @@
                 </div>
               </div>
               <div>
-                <a [routerLink]="['/admin/product', product.id]" class="font-bold">{{ product.title }}</a>
+                <a [routerLink]="['/admin/products', product.id]" class="font-bold. hover:text-accent transition-colors duration-300">{{ product.title }}</a>
                 <div class="text-sm opacity-50">{{ product.sizes.join(", ") }}</div>
               </div>
             </div>
@@ -50,7 +50,7 @@
             }
           </td>
           <th>
-            <a [routerLink]="['/admin/product', product.id]"
+            <a [routerLink]="['/admin/products', product.id]"
               class="btn btn-ghost text-accent btn-xs">
               Detalles
             </a>
