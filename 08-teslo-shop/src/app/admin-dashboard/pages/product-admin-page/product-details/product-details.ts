@@ -1,5 +1,6 @@
 import { ProductCarousel } from '@/products/components/product-carousel/product-carousel';
 import { Product } from '@/products/interfaces/product.interface';
+import { ProductsServices } from '@/products/services/products.service';
 import { FormErrorLabel } from '@/shared/components/form-error-label/form-error-label';
 import { FormUtils } from '@/utils/form-utils';
 import { Component, inject, input, OnInit } from '@angular/core';
@@ -12,6 +13,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class ProductDetails implements OnInit {
   product = input.required<Product>()
+  productService = inject(ProductsServices);
 
   fb = inject(FormBuilder)
 
@@ -64,5 +66,11 @@ export class ProductDetails implements OnInit {
         .split(",")
         .map(tag => tag.trim()) ?? [],
     }
+
+    this.productService.updateProduct(this.product().id, productLike).subscribe(
+      product => {
+        console.log("Producto actualizado")
+      }
+    );
   }
 }
